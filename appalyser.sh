@@ -3,9 +3,6 @@
 green='\033[1;32m'
 end='\033[1;m'
 info='\033[1;33m[!]\033[1;m'
-que='\033[1;34m[?]\033[1;m'
-bad='\033[1;31m[-]\033[1;m'
-good='\033[1;32m[+]\033[1;m'
 run='\033[1;97m[~]\033[1;m'
 
 printf """$green             
@@ -46,15 +43,15 @@ certificate () {
 }
 
 manifest () {
-        echo "android.permission.INTERNET
-    android.permission.READ_EXTERNAL_STORAGE
-    android.permission.WRITE_EXTERNAL_STORAGE
-    android.permission.BLUETOOTH
-    android.permission.READ_PHONE_STATE
-    android.permission.ACCESS_COARSE_LOCATION
-    android.permission.ACCESS_FINE_LOCATION
-    android.permission.ACCESS_WIFI_STATE
-    android.permission.ACCESS_NETWORK_STATE" >> /tmp/apk_temp/allowed
+    echo "android.permission.INTERNET
+android.permission.READ_EXTERNAL_STORAGE
+android.permission.WRITE_EXTERNAL_STORAGE
+android.permission.BLUETOOTH
+android.permission.READ_PHONE_STATE
+android.permission.ACCESS_COARSE_LOCATION
+android.permission.ACCESS_FINE_LOCATION
+android.permission.ACCESS_WIFI_STATE
+android.permission.ACCESS_NETWORK_STATE" >> /tmp/apk_temp/allowed
 
     #save to a temp file
     grep "android.permission" /tmp/apk_temp/AndroidManifest.xml | cut -d "\"" -f 2 >> /tmp/apk_temp/permissions
