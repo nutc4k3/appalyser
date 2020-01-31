@@ -63,6 +63,7 @@ Para acessar o diretório **C:\Program Files\7-Zip** via shell, usamos `mount /m
 ## Utilização
 
 `chmod +x appalyser.sh`
+
 `./appalyser.sh <PATH do apk>`
 
 Enjoy :)
