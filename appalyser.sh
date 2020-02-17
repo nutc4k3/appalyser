@@ -19,7 +19,7 @@ if [ $1 ]
 then
     :
 else
-    printf "Usage: ./appalyser.sh <path to apk file>\n"
+    printf "Uso: ./appalyser.sh <caminho para o arquivo apk>\n"
     exit
 fi
 
@@ -28,17 +28,17 @@ certificate () {
     v=`jarsigner -verify -verbose $apk 2>/dev/null| grep -E "Debug|Unknown|Getnet|Cielo|Rede|Stone"`
     case $v in
     *"Debug"*)
-        printf $"\n\t\t$info Warning $info\nFound a Debug signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrado uma assinatura de Debug!\n$green $v $end\n\n" ;;
     *"Unknown"*)
-        printf $"\n\t\t$info Warning $info\nFound an Unknown signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrada uma assinatura !\n$green $v $end\n\n" ;;
     *"Getnet"*)
-        printf $"\n\t\t$info Warning $info\nFound a Getnet signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrada uma assinatura da Getnet!\n$green $v $end\n\n" ;;
     *"Cielo"*)
-        printf $"\n\t\t$info Warning $info\nFound a Cielo signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrada uma assinatura da Cielo!\n$green $v $end\n\n" ;;
     *"Rede"*)
-        printf $"\n\t\t$info Warning $info\nFound a Rede signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrada uma assinatura da Rede!\n$green $v $end\n\n" ;;
     *"Stone"*)
-        printf $"\n\t\t$info Warning $info\nFound a Stone signature!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nEncontrada uma assinatura da Stone!\n$green $v $end\n\n" ;;
     esac
 }
 
@@ -58,13 +58,13 @@ android.permission.ACCESS_NETWORK_STATE" >> /tmp/apk_temp/allowed
 
     #compare with whitelist and creates warning
     #var=`grep -vf /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; dialog --title "Warning!" --msgbox "Por favor, remova as seguintes permissões antes de prosseguir:\n\n${var}" 20 50; 
-    var=`grep -vf /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; printf $"\n\t\t$info Warning $info\nPlease, remove the following permissions before proceding:\n$green ${var} $end\n";
+    var=`grep -vf /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; printf $"\n\t\t$info Warning $info\nPor favor, remova as sequintes permissões antes de prosseguir:\n$green ${var} $end\n";
 
     #check external references
-    var=`grep -Ei "getnet|rede|gertec|stone|cielo" /tmp/apk_temp/AndroidManifest.xml | cut -d "\"" -f 2`; if [[ $var ]];then printf $"\n\t\t$info Warning $info\nPlease, remove all external references of $green $var $end present in your code before proceding\n";fi
+    var=`grep -Ei "getnet|rede|gertec|stone|cielo" /tmp/apk_temp/AndroidManifest.xml | cut -d "\"" -f 2`; if [[ $var ]];then printf $"\n\t\t$info Warning $info\nPor favor, remova as referências externas $green $var $end antes de prosseguir\n";fi
     
     #check backup and debuggable
-    var=`grep -Eo 'android:debuggable="true"|android:allowBackup="true"' /tmp/apk_temp/AndroidManifest.xml`;  if [[ $var ]];then printf $"\n\t\t$info Warning $info\nPlease, remove this before proceding:\n$green $var $end \n";fi
+    var=`grep -Eo 'android:debuggable="true"|android:allowBackup="true"' /tmp/apk_temp/AndroidManifest.xml`;  if [[ $var ]];then printf $"\n\t\t$info Warning $info\nPor favor, remove isso antes de prosseguir:\n$green $var $end \n";fi
 
     #remove temp dir
     rm -rf /tmp/apk_temp/
@@ -74,13 +74,13 @@ extract () {
     apktool d $apk -o /tmp/apk_temp -q 2>/dev/null
 }
 
-printf $"$run Analysing Certificates\n"
+printf $"$run Analisando os certificados\n"
 certificate
 
-printf $"$run Decompiling the apk\n"
+printf $"$run Decompilando o apk\n"
 extract
 
-printf $"$run Analysing Android Manifest\n"
+printf $"$run Analisando o Android Manifest\n"
 manifest
 
 exit
