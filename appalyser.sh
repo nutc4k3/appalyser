@@ -28,17 +28,17 @@ certificate () {
     v=`jarsigner -verify -verbose $apk 2>/dev/null| grep -E "Debug|Unknown|Getnet|Cielo|Rede|Stone"`
     case $v in
     *"Debug"*)
-        printf $"\n\t\t$info Warning $info\nFound a Debug signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound a Debug signature!\n$green $v $end\n\n" ;;
     *"Unknown"*)
-        printf $"\n\t\t$info Warning $info\nFound an Unknown signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound an Unknown signature!\n$green $v $end\n\n" ;;
     *"Getnet"*)
-        printf $"\n\t\t$info Warning $info\nFound a Getnet signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound a Getnet signature!\n$green $v $end\n\n" ;;
     *"Cielo"*)
-        printf $"\n\t\t$info Warning $info\nFound a Cielo signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound a Cielo signature!\n$green $v $end\n\n" ;;
     *"Rede"*)
-        printf $"\n\t\t$info Warning $info\nFound a Rede signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound a Rede signature!\n$green $v $end\n\n" ;;
     *"Stone"*)
-        printf $"\n\t\t$info Warning $info\nFound a Stone signature, you should take that out mister!\n$green $v $end\n\n" ;;
+        printf $"\n\t\t$info Warning $info\nFound a Stone signature!\n$green $v $end\n\n" ;;
     esac
 }
 
