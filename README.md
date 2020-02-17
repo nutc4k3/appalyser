@@ -73,7 +73,7 @@ Para acessar o diretório **C:\Program Files\7-Zip** via shell, usamos `mount /m
 	`sudo chmod +x /usr/local/bin/apktool`
 	
 
-## Utilização
+## Utilização (precisa ser sudo)
 
 `git clone https://github.com/nutc4k3/appalyser.git`
 
