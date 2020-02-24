@@ -47,6 +47,7 @@ manifest () {
 android.permission.READ_EXTERNAL_STORAGE
 android.permission.WRITE_EXTERNAL_STORAGE
 android.permission.BLUETOOTH
+android.permission.CAMERA
 android.permission.READ_PHONE_STATE
 android.permission.ACCESS_COARSE_LOCATION
 android.permission.ACCESS_FINE_LOCATION
@@ -58,7 +59,7 @@ android.permission.ACCESS_NETWORK_STATE" >> /tmp/apk_temp/allowed
 
     #compare with whitelist and creates warning
     #var=`grep -vf /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; dialog --title "Warning!" --msgbox "Por favor, remova as seguintes permissões antes de prosseguir:\n\n${var}" 20 50; 
-    var=`grep -vf /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; printf $"\n\t\t$info Warning $info\nPor favor, remova as sequintes permissões antes de prosseguir:\n$green ${var} $end\n";
+    var=`awk 'NR==FNR {exclude[$0];next} !($0 in exclude)' /tmp/apk_temp/allowed /tmp/apk_temp/permissions`; printf $"\n\t\t$info Warning $info\nPor favor, remova as sequintes permissões antes de prosseguir:\n$green ${var} $end\n";
 
     #check external references
     var=`grep -Ei "getnet|rede|gertec|stone|cielo" /tmp/apk_temp/AndroidManifest.xml | cut -d "\"" -f 2`; if [[ $var ]];then printf $"\n\t\t$info Warning $info\nPor favor, remova as referências externas $green $var $end antes de prosseguir\n";fi
